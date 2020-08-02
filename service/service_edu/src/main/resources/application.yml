@@ -1,0 +1,63 @@
+server:
+  port: 8110 # 服务端口
+  tocmcat:
+    max-threads: 10 #修改最大并发为10，默认200
+
+spring:
+  profiles:
+    active: dev # 环境设置
+  application:
+    name: service-edu # 服务名
+  datasource: # mysql数据库连接
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/hhn_guli_edu?serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+#spring:
+  jackson: #返回json的全局时间格式
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  cloud:
+    nacos: #注册服务配置
+      discovery:
+        server-addr: localhost:8848 #服务注册地址
+    sentinel: #容错服务配置
+      transport:
+        port: 8081 #跟sentinel控制台交流的端口，可随意指定
+        dashboard: localhost:8080 #指定控制台地址
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+    password: #默认为空
+    lettuce:
+      pool:
+        max-active: 20 #最大连接数，负数为没有限制，默认8
+        max-wait: -1 #最大阻塞等待时间，负数为没有限制，默认-1
+        max-idle: 8 #最大空闲连接，默认8
+        min-idle: 0 #最小空闲连接，默认0
+
+#mybatis日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:com/atguigu/guli/service/edu/mapper/xml/*.xml
+
+service-oss: #调用提供者名称，在消费者端配置调用提供者的调用策略
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule  #随机策略，默认轮询
+
+ribbon:
+  MaxAutoRetries: 0 #同一实例最大调用次数，不包括第一次，默认0
+  MaxAutoRetriesNextServer: 1 #重试其他实例的最大次数，不包括首次，默认1
+  ConnectTimeout: 5000 #连接建立超时时长，默认1秒
+  ReadTimeout: 5000 #处理请求超时时长，默认1秒
+
+feign: #开启feign对sentinel服务的支持
+  sentinel:
+    enabled: true
+
+# 设置日志级别
+#logging:
+#  level:
+#    root: ERROR
