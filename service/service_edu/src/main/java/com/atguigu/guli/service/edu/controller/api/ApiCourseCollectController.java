@@ -23,7 +23,7 @@ import java.util.List;
  * @author Helen
  * @since 2020-04-01
  */
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @RequestMapping("/api/edu/course-collect")
 @Slf4j
