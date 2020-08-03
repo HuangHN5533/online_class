@@ -1,4 +1,4 @@
-# 基于微服务在线教育项目 
+# 基于前后端分离及微服务在线教育平台 
 涉及技术栈：
 * 核心框架：SpringBoot，SpringCloud-Alibaba  
 * 持久层：MyBatis-plus  
