@@ -13,6 +13,6 @@ spring:
 aliyun:
   oss:
     endpoint: oss-cn-shenzhen.aliyuncs.com
-    keyid: LTAI4GKq56vWpcq1VSZMSJPs
-    keysecret: 5l6X7g5q9g1OCmkpt36uDUOQPP0EPA
+    keyid: 
+    keysecret: 
     bucketname: online-class-upload
